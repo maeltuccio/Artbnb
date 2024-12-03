@@ -1,0 +1,12 @@
+<h1> Liste des oeuvres d'art</h1>
+<% if user_signed_in? %>
+  <%= link_to 'Nouvelle oeuvre', new_artwork_path %>
+<% end %>
+<ul>
+  <% @artworks.each do |artwork| %>
+    <li>
+      <%= link_to artwork.title, artwork_path(artwork) %>
+       - <%= number_to_currency(artwork.price) %>
+    </li>
+  <% end %>
+</ul>
