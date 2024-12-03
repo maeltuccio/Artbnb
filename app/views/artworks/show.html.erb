@@ -1,0 +1,7 @@
+<h1><%= @artwork.title %></h1>
+<p><%= @artwork.description %></p>
+<p>Prix : <%= number_to_currency(@artwork.price) %></p>
+<% if user_signed_in? && @artwork.user == current_user %>
+  <%= link_to 'Modifier', edit_artwork_path(@artwork) %>
+  <%= link_to 'Supprimer', artwork_path(@artwork), method: :delete, data: { confirm: 'Êtes-vous sûr ?' } %>
+<% end %>
