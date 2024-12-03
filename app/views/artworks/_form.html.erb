@@ -29,6 +29,16 @@
       </div>
     <% end %>
   </div>
+  <!-- Upload de l'image -->
+  <div class="form-group">
+    <%= form.label :image, "Ajouter une image", class: "form-label" %>
+    <%= form.file_field :image, class: "form-control" %>
+    <% if @artwork.errors[:image].any? %>
+      <div class="error-message">
+        <%= @artwork.errors[:image].join(", ") %>
+      </div>
+    <% end %>
+  </div>
   <!-- Bouton de soumission -->
   <div class="form-group">
     <%= form.submit class: "btn btn-primary" %>

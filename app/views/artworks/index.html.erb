@@ -5,8 +5,11 @@
 <ul>
   <% @artworks.each do |artwork| %>
     <li>
+      <% if artwork.image.attached? %>
+        <%= image_tag artwork.image.variant(resize_to_limit: [100, 100]), class: "thumbnail" %>
+      <% end %>
       <%= link_to artwork.title, artwork_path(artwork) %>
-       - <%= number_to_currency(artwork.price) %>
+      - <%= number_to_currency(artwork.price) %>
     </li>
   <% end %>
 </ul>
