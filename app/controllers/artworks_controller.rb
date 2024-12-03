@@ -14,7 +14,7 @@ class ArtworksController < ApplicationController
     @artwork = Artwork.new(artwork_params)
     @artwork.user = current_user
     if @artwork.save
-      redirect_to @artworks, notice: 'Artwork was successfully created.'
+      redirect_to @artwork, notice: 'Artwork was successfully created.'
     else
       render :new
     end
