@@ -1,12 +1,107 @@
 .navbar-lewagon {
+  display: flex;
+  align-items: center;
   justify-content: space-between;
   background: white;
-}
-
-.navbar-lewagon .navbar-collapse {
-  flex-grow: 0;
-}
-
-.navbar-lewagon .navbar-brand img {
-  width: 72px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  padding: 1rem 2rem;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  /* Logo */
+  .navbar-brand img {
+    width: 72px;
+    height: 72px; /* Assurez-vous que largeur = hauteur */
+    object-fit: cover;
+    border-radius: 50%; /* Rend l'image circulaire */
+    border: 2px solid #f7f7f7; /* Ajoute une bordure blanche */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Effet d'ombre */
+  }
+  .navbar-toggler {
+    border: none;
+    .navbar-toggler-icon {
+      width: 24px;
+      height: 24px;
+    }
+  }
+  .navbar-collapse {
+    display: flex;
+    justify-content: flex-end;
+    flex-grow: 1;
+  }
+  .navbar-nav {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    list-style: none;
+    .nav-link {
+      color: #333;
+      font-weight: bold;
+      text-decoration: none;
+      font-size: 1rem;
+      &:hover {
+        color: #ff385c;
+      }
+    }
+  }
+  .navbar-actions {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    .avatar {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      object-fit: cover;
+    }
+    .dropdown {
+      position: relative;
+      .dropdown-menu {
+        display: none;
+        position: absolute;
+        right: 0;
+        background: white;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        border-radius: 8px;
+        margin-top: 0.5rem;
+        min-width: 150px;
+        .dropdown-item {
+          padding: 0.5rem 1rem;
+          font-size: 0.9rem;
+          color: #333;
+          text-decoration: none;
+          display: block;
+          &:hover {
+            background: #f7f7f7;
+            color: #ff385c;
+          }
+        }
+      }
+      &:hover .dropdown-menu {
+        display: block;
+      }
+    }
+  }
+  .btn {
+    padding: 0.5rem 1rem;
+    font-size: 0.9rem;
+    font-weight: bold;
+    border-radius: 8px;
+    text-decoration: none;
+    &.btn-primary {
+      background-color: #ff385c;
+      color: white;
+      border: none;
+      &:hover {
+        background-color: darken(#ff385c, 10%);
+      }
+    }
+    &.btn-secondary {
+      background-color: #333;
+      color: white;
+      &:hover {
+        background-color: #555;
+      }
+    }
+  }
 }
