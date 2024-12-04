@@ -9,9 +9,9 @@
       <% if artwork.image.attached? %>
         <!-- Image locale via Active Storage -->
         <%= image_tag artwork.image.variant(resize_to_limit: [100, 100]), alt: "Image de #{artwork.title}", class: "thumbnail" %>
-      <% elsif artwork.image_url.present? %>
+      <% elsif artwork.image.present? %>
         <!-- Image distante via image_url -->
-        <%= image_tag artwork.image_url, alt: "Image de #{artwork.title}", class: "thumbnail" %>
+        <%= image_tag artwork.image, alt: "Image de #{artwork.title}", class: "thumbnail" %>
       <% else %>
         <!-- Si aucune image n'est disponible -->
         <p>Aucune image disponible</p>
