@@ -1,4 +1,4 @@
-cclass BookingsController < ApplicationController
+class BookingsController < ApplicationController
 before_action :set_artwork
 
 def create
@@ -7,11 +7,12 @@ def create
   @booking.artwork = @artwork
 
   if @booking.save
-    redirect_to @artwork, notice: "Booking was successfully created."
+    redirect_to @artwork, notice: "Booking bien enregistré."
   else
-    render 'artworks/show', alert: "There was an issue with your booking."
+    render 'artworks/show', alert: "Il y a un problème avec votre résa"
   end
 end
+
 
 private
 
@@ -21,4 +22,5 @@ end
 
 def booking_params
   params.require(:booking).permit(:start_date, :end_date)
+end
 end
