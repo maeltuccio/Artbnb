@@ -13,8 +13,11 @@
       <!-- Liens déplacés à droite -->
       <ul class="navbar-nav ms-auto">
         <% if user_signed_in? %>
+
           <li class="nav-item">
             <%= link_to "Dashboard", "/dashboard", class: "nav-link" %>
+          <li class="nav-item active">
+
           </li>
           <li class="nav-item">
             <%= link_to "Ajouter une œuvre", "/artworks/new", class: "nav-link" %>
