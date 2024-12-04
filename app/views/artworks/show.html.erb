@@ -37,3 +37,9 @@
   <!-- Lien pour retourner à la liste -->
   <%= link_to 'Retour à la liste des œuvres', artworks_path, class: "btn btn-secondary" %>
 </div>
+
+<%= simple_form_for [@artwork, @booking] do |f| %>
+    <%= f.input :start_date, as: :string, input_html: { data: { controller: "datepicker" } } %>
+    <%= f.input :end_date, as: :string, input_html: { data: { controller: "datepicker" } } %>
+    <%= f.submit %>
+  <% end %>
