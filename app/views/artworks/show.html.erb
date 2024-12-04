@@ -8,3 +8,11 @@
   <%= link_to 'Modifier', edit_artwork_path(@artwork), class: "btn btn-warning" %>
   <%= link_to 'Supprimer', artwork_path(@artwork), method: :delete, data: { confirm: 'Êtes-vous sûr ?' }, class: "btn btn-danger" %>
 <% end %>
+
+<h2>Réservez cette oeuvre</h2>
+
+<%= simple_form_for [@artwork, @booking] do |f| %>
+    <%= f.input :start_date, as: :string, input_html: { data: { controller: "datepicker" } } %>
+    <%= f.input :end_date, as: :string, input_html: { data: { controller: "datepicker" } } %>
+    <%= f.submit %>
+  <% end %>
