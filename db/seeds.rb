@@ -17,7 +17,7 @@ raw_data = URI.open(url).read  # Récupère les données de l'API
 
 # Parser les données JSON pour obtenir les œuvres d'art
 artworks_data = JSON.parse(raw_data)['data']
-
+p artworks_data
 # Pour chaque œuvre récupérée, créer un enregistrement dans la base de données
 artworks_data.each do |artwork|
   # Si la donnée est valide, on crée une œuvre
