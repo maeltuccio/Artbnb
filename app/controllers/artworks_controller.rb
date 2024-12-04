@@ -50,3 +50,4 @@ class ArtworksController < ApplicationController
     params.require(:artwork).permit(:title, :description, :price, :image)
   end
 end
+

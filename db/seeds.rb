@@ -10,24 +10,43 @@
 
 require 'open-uri'
 require 'json'
+Booking.destroy_all
+Artwork.destroy_all
+User.destroy_all
 
 # URL de l'API de l'Art Institute of Chicago
 url = 'https://api.artic.edu/api/v1/artworks'
-raw_data = URI.open(url).read  # Récupère les données de l'API
+response = URI.open(url).read
 
 # Parser les données JSON pour obtenir les œuvres d'art
-artworks_data = JSON.parse(raw_data)['data']
+artworks_data = JSON.parse(response)['data']
+
+# Vérifie qu'il y a au moins un utilisateur dans la base
+if User.count.zero?
+  User.create!(email: 'admin@example.com', password: 'password', password_confirmation: 'password')
+  puts "Utilisateur par défaut créé avec l'email : admin@example.com"
+end
+default_user = User.first
 
 # Pour chaque œuvre récupérée, créer un enregistrement dans la base de données
-artworks_data.each do |artwork|
-  # Si la donnée est valide, on crée une œuvre
-  # On assigne un prix par défaut (par exemple, 0) si aucun prix n'est trouvé dans les données
-  Artwork.create(
-    title: artwork['title'],
-    description: artwork['description'] || 'Aucune description disponible',  # Si pas de description, on met un texte par défaut
-    price: 0,  # L'API ne fournit pas de prix, donc on assigne une valeur par défaut
-    user_id: User.first&.id,  # Associe l'œuvre au premier utilisateur, ou tu peux choisir un utilisateur spécifique
+artworks_data.each do |artwork_data|
+  p artwork_data['id']
+  next unless artwork_data['title'] && artwork_data['image_id'] && artwork_data['id'] != 271807
+
+  # Créer l'œuvre
+  artwork = Artwork.create!(
+    title: artwork_data['title'],
+    description: artwork_data['thumbnail'] && artwork_data['thumbnail']['alt_text'] ? artwork_data['thumbnail']['alt_text'] : 'Aucune description disponible',
+    price: rand(100..10_000),
+    user: default_user
   )
+
+  # Attacher l'image via Active Storage
+  image_url = "https://www.artic.edu/iiif/2/#{artwork_data['image_id']}/full/843,/0/default.jpg"
+  image_file = URI.open(image_url)
+  artwork.image.attach(io: image_file, filename: "#{artwork_data['image_id']}.jpg", content_type: 'image/jpeg')
+
+  puts "Créé : #{artwork.title}"
 end
 
-puts "Artworks seeded successfully!"
+puts "Les #{Artwork.count} œuvres d'art ont été ajoutées avec succès !"
