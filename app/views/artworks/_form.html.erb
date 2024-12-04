@@ -1,46 +1,48 @@
-<%= form_with model: @artwork, local: true do |form| %>
-  <!-- Titre de l'œuvre -->
-  <div class="form-group">
-    <%= form.label :title, "Titre de l'œuvre", class: "form-label" %>
-    <%= form.text_field :title, class: "form-control", placeholder: "Ex : Mona Lisa" %>
-    <% if @artwork.errors[:title].any? %>
-      <div class="error-message">
-        <%= @artwork.errors[:title].join(", ") %>
-      </div>
-    <% end %>
-  </div>
-  <!-- Description -->
-  <div class="form-group">
-    <%= form.label :description, "Description", class: "form-label" %>
-    <%= form.text_area :description, class: "form-control", placeholder: "Ex : Une peinture réalisée par Léonard de Vinci" %>
-    <% if @artwork.errors[:description].any? %>
-      <div class="error-message">
-        <%= @artwork.errors[:description].join(", ") %>
-      </div>
-    <% end %>
-  </div>
-  <!-- Prix -->
-  <div class="form-group">
-    <%= form.label :price, "Prix (€)", class: "form-label" %>
-    <%= form.number_field :price, step: 0.01, class: "form-control", placeholder: "Ex : 1200.50" %>
-    <% if @artwork.errors[:price].any? %>
-      <div class="error-message">
-        <%= @artwork.errors[:price].join(", ") %>
-      </div>
-    <% end %>
-  </div>
-  <!-- Upload de l'image -->
-  <div class="form-group">
-    <%= form.label :image, "Ajouter une image", class: "form-label" %>
-    <%= form.file_field :image, class: "form-control" %>
-    <% if @artwork.errors[:image].any? %>
-      <div class="error-message">
-        <%= @artwork.errors[:image].join(", ") %>
-      </div>
-    <% end %>
-  </div>
-  <!-- Bouton de soumission -->
-  <div class="form-group">
-    <%= form.submit class: "btn btn-primary" %>
-  </div>
-<% end %>
+<div class="container">
+  <%= form_with model: @artwork, local: true do |form| %>
+    <!-- Titre de l'œuvre -->
+    <div class="form-group">
+      <%= form.label :title, "Titre de l'œuvre", class: "form-label" %>
+      <%= form.text_field :title, class: "form-control", placeholder: "Ex : Mona Lisa" %>
+      <% if @artwork.errors[:title].any? %>
+        <div class="error-message">
+          <%= @artwork.errors[:title].join(", ") %>
+        </div>
+      <% end %>
+    </div>
+    <!-- Description -->
+    <div class="form-group">
+      <%= form.label :description, "Description", class: "form-label" %>
+      <%= form.text_area :description, class: "form-control", placeholder: "Ex : Une peinture réalisée par Léonard de Vinci" %>
+      <% if @artwork.errors[:description].any? %>
+        <div class="error-message">
+          <%= @artwork.errors[:description].join(", ") %>
+        </div>
+      <% end %>
+    </div>
+    <!-- Prix -->
+    <div class="form-group">
+      <%= form.label :price, "Prix (€)", class: "form-label" %>
+      <%= form.number_field :price, step: 0.01, class: "form-control", placeholder: "Ex : 1200.50" %>
+      <% if @artwork.errors[:price].any? %>
+        <div class="error-message">
+          <%= @artwork.errors[:price].join(", ") %>
+        </div>
+      <% end %>
+    </div>
+    <!-- Upload de l'image -->
+    <div class="form-group">
+      <%= form.label :image, "Ajouter une image", class: "form-label" %>
+      <%= form.file_field :image, class: "form-control" %>
+      <% if @artwork.errors[:image].any? %>
+        <div class="error-message">
+          <%= @artwork.errors[:image].join(", ") %>
+        </div>
+      <% end %>
+    </div>
+    <!-- Bouton de soumission -->
+    <div class="form-group">
+      <%= form.submit "Enregistrer", class: "btn" %>
+    </div>
+  <% end %>
+</div>
