@@ -11,10 +11,13 @@
     <!-- Contenu de la navbar -->
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <!-- Barre de recherche -->
-      <form class="d-flex me-auto" action="<%= artworks_path %>" method="get">
-        <%= text_field_tag :query, params[:query], class: "form-control me-2 py-0", placeholder: "Rechercher une œuvre" %>
-        <%= submit_tag "Rechercher", class: "btn btn-dark" %>
-      </form>
+
+      <div class="search-container" style="padding-left: 350px;">
+  <form class="d-flex mx-auto flex-grow-1 justify-content-center" action="<%= artworks_path %>" method="get">
+    <%= text_field_tag :query, params[:query], class: "form-control me-2 py-0 custom-width", placeholder: "Une idée ?" %>
+    <%= submit_tag "Let's find it 🔍", class: "submit-hover btn btn-link nav-link px-0" %>
+  </form>
+</div>
       <!-- Liens déplacés à droite -->
       <ul class="navbar-nav ms-auto">
         <% if user_signed_in? %>
