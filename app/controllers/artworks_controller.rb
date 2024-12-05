@@ -3,8 +3,13 @@ class ArtworksController < ApplicationController
   skip_before_action :authenticate_user!, only: [:index, :show]
 
   def index
-    @artworks = Artwork.all
-    @banner_image = random_banner_image
+    @banner_image = "https://res.cloudinary.com/djqnyh6hr/image/upload/v1733407750/utxgxwtkuqe0zct4e8sz7k3xpmnm_idaxcp.jpg"
+    if params[:query].present?
+      @artworks = Artwork.where("title ILIKE :query OR description ILIKE :query", query: "%#{params[:query]}%")
+    else
+      @artworks = Artwork.all
+    end
+
   end
 
   def new
@@ -49,15 +54,5 @@ class ArtworksController < ApplicationController
 
   def artwork_params
     params.require(:artwork).permit(:title, :description, :price, :image)
-  end
-
-  def random_banner_image
-    banner_images = [
-      "https://res.cloudinary.com/djqnyh6hr/image/upload/v1733407765/bwl4yx4ojjd5xrrju483549hoogy_q4e6yu.jpg",
-      "https://res.cloudinary.com/djqnyh6hr/image/upload/v1733407750/utxgxwtkuqe0zct4e8sz7k3xpmnm_idaxcp.jpg",
-      "https://res.cloudinary.com/djqnyh6hr/image/upload/v1733407749/vht7m88pm72e55wfuvjna0tfrcao_xtpkyw.jpg",
-      "https://res.cloudinary.com/djqnyh6hr/image/upload/v1733407750/utxgxwtkuqe0zct4e8sz7k3xpmnm_idaxcp.jpg"
-    ]
-    banner_images.sample
   end
 end
