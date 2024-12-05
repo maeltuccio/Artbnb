@@ -1,0 +1,45 @@
+/* Style du tableau */
+.booking-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+.booking-table th, .booking-table td {
+  padding: 12px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+
+.booking-table th {
+  background-color: #f4f4f4;
+  font-size: 1.1rem;
+  color: #333;
+}
+
+.booking-table td {
+  font-size: 1rem;
+  color: #666;
+}
+
+.booking-table a {
+  padding: 6px 12px;
+  font-size: 1rem;
+  border-radius: 4px;
+  text-decoration: none;
+  margin-right: 10px;
+}
+
+.booking-table a:hover {
+  opacity: 0.8;
+}
+
+.booking-table .btn-accept {
+  background-color: #28a745;
+  color: white;
+}
+
+.booking-table .btn-decline {
+  background-color: #dc3545;
+  color: ff385c;
+}

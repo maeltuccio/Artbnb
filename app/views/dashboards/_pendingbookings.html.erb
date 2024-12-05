@@ -1,30 +1,37 @@
-  <div class="grid">
-  <% @artworks.each do |artwork| %>
-          <% if artwork.bookings.any? %>
-            <div class="booking-cards">
-              <% artwork.bookings.each do |booking| %>
-              <div class="card">
-                <div class="card-body">
-                  <h3><%= booking.artwork.title %></h3>
-                  <p>Date de début : <%= booking.start_date.strftime('%d/%m/%Y') %></p>
-                  <p>Date de fin : <%= booking.end_date.strftime('%d/%m/%Y') %></p>
-                  <p>Status : <strong><%= booking.status %></strong></p>
-                  <div class="actions">
-                    <% if booking.status == 'Pending' %>
-                      <%= link_to 'Accepter', accept_booking_path(artwork_id: booking.artwork_id, id: booking.id), data: { turbo_method: :patch } %>
-                      <%= link_to 'Refuser', decline_booking_path(artwork_id: booking.artwork_id, id: booking.id), data: { turbo_method: :patch } %>
-
-
-                    <% end %>
-                  </div>
-
-                </div>
-              </div>
-              <% end %>
-            </div>
-          <% else %>
-            <p>Aucune réservation en cours.</p>
+<% if @artworks.any? %>
+  <table class="booking-table">
+    <thead>
+      <tr>
+        <th>Œuvre</th>
+        <th>Date de début</th>
+        <th>Date de fin</th>
+        <th>Statut</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @artworks.each do |artwork| %>
+        <% if artwork.bookings.any? %>
+          <% artwork.bookings.each do |booking| %>
+            <tr>
+              <td><%= booking.artwork.title %></td>
+              <td><%= booking.start_date.strftime('%d/%m/%Y') %></td>
+              <td><%= booking.end_date.strftime('%d/%m/%Y') %></td>
+              <td><strong><%= booking.status %></strong></td>
+              <td>
+                <% if booking.status == 'Pending' %>
+                  <%= link_to 'Accepter', accept_booking_path(artwork_id: booking.artwork_id, id: booking.id), data: { turbo_method: :patch } %>
+                  <%= link_to 'Refuser', decline_booking_path(artwork_id: booking.artwork_id, id: booking.id), data: { turbo_method: :patch } %>
+                <% end %>
+              </td>
+            </tr>
           <% end %>
+        <% else %>
+          <tr><td colspan="5">Aucune réservation en cours.</td></tr>
         <% end %>
-
-  </div>
+      <% end %>
+    </tbody>
+  </table>
+<% else %>
+  <p>Aucune œuvre disponible.</p>
+<% end %>
