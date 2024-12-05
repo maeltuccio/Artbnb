@@ -11,23 +11,35 @@
   radial-gradient(100% 12158.24% at 99.42% 0%, #C72D65 0%, #D23760 48.44%, #D23755 100%) /* warning: gradient uses a rotation that is not supported by CSS and may not behave as expected */;
   ;
   color: #fff;
-  padding-top: 20px;
+  padding-top: 80px;
   display: flex;
   flex-direction: column;
   align-items: center;
+  margin-top: 40px;
   margin: 24px;
   border-radius: 8px;
-
+  position: relative; /* Nécessaire pour le positionnement absolu de l'avatar */
+  overflow: hidden; /* Cache le contenu débordant de la sidebar */
 }
 
+
+
+/* Pour l'avatar */
 .sidebar .logo {
-  margin-bottom: 40px;
+  position: absolute; /* Permet de positionner l'avatar au-dessus du fond */
+  top: -40px; /* Positionne l'avatar au-dessus du fond */
+  left: 50%;
+  transform: translateX(-50%); /* Centre l'avatar horizontalement */
+  z-index: 10; /* Assure que l'avatar est au-dessus des autres éléments */
+  margin-bottom: 40px; /* Décalage sous l'avatar */
 }
 
 .sidebar .logo .avatar {
   width: 80px;
   height: 80px;
   border-radius: 50%;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Ombre */
+  object-fit: cover; /* Gère la coupe de l'image */
 }
 
 .sidebar nav ul {
@@ -57,12 +69,17 @@
 
 /* Main content */
 .main-content {
-  border-radius: 8px;
   margin: 24px;
   flex: 1;
   padding: 30px;
-  background-color: #fff;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+.header{
+border-radius: 8px;
+margin: 24px;
+flex: 1;
+padding: 30px;
+background-color: #fff;
+box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
 .header h1, h2 {
@@ -76,6 +93,13 @@
   color: #666;
 }
 
+section {
+  border-radius: 8px;
+  margin: 24px;
+  flex: 1;
+  padding: 30px;
+  background-color: #fff;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);}
 /* Booking cards */
 .booking-cards {
   display: grid;
