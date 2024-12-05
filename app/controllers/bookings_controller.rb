@@ -16,6 +16,25 @@ def create
   end
 end
 
+def accept
+  raise
+  if @booking.update(status: 'Confirmed')  # Mettez à jour le statut à 'Confirmed'
+    redirect_to dashboards_path, notice: "Réservation confirmée avec succès!"
+  else
+    redirect_to dashboards_path, alert: "Il y a eu un problème avec la confirmation de la réservation."
+  end
+end
+
+def decline
+  raise
+  if @booking.update(status: 'Cancelled')  # Mettez à jour le statut à 'Cancelled'
+    redirect_to dashboards_path, notice: "Réservation annulée avec succès."
+  else
+    redirect_to dashboards_path, alert: "Il y a eu un problème avec l'annulation de la réservation."
+  end
+end
+
+
 
 private
 
@@ -25,5 +44,11 @@ end
 
 def booking_params
   params.require(:booking).permit(:start_date, :end_date)
+end
+def set_booking
+  @booking = Booking.find(params[:id])
+  unless @booking.user == current_user  # Vérifiez que l'utilisateur est bien celui qui a fait la réservation
+    redirect_to dashboards_path, alert: "Vous n'êtes pas autorisé à modifier cette réservation."
+  end
 end
 end
