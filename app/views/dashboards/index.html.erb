@@ -17,21 +17,26 @@
     </aside>
 
     <!-- Main content -->
-    <main class="main-content">
-      <header class="header">
+    <main class="main-content col-sm-12 col-lg-8">
         <h1>Bienvenue sur votre Dashboard Artbnb</h1>
+
+      <header class="header row mb-3">
         <p>Consultez vos réservations en cours et gérez vos propriétés</p>
       <%= render "shared/usercardgrid" %>
       </header>
+        <h2>Réservations en attente de confirmation</h2>
 
-      <section class="bookings">
-        <h2>Réservations en cours</h2>
+      <section class="header row mb-3">
 
-     <%= render "pendingbookings" %>
-
-    <%= render "mybookings" %>
-
-
+        <%= render "pendingbookings" %>
       </section>
+        <h2>Mes reservations</h2>
+
+            <section class="header row mb-3">
+
+        <%= render "mybookings" %>
+</section>
+
+
     </main>
   </div>
