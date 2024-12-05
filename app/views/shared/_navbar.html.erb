@@ -2,7 +2,7 @@
   <div class="container-fluid">
     <!-- Logo -->
     <%= link_to "/artworks", class: "navbar-brand" do %>
-      <%= image_tag "logo-art-bnb.png", class: "navbar-brand" %> <!-- Utilisez la classe navbar-brand pour appliquer le style SCSS -->
+      <%= image_tag "logo-art-bnb.png", class: "navbar-brand" %>
     <% end %>
     <!-- Bouton responsive pour mobile -->
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -10,12 +10,16 @@
     </button>
     <!-- Contenu de la navbar -->
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <!-- Barre de recherche -->
+      <form class="d-flex me-auto" action="<%= artworks_path %>" method="get">
+        <%= text_field_tag :query, params[:query], class: "form-control me-2", placeholder: "Rechercher une œuvre" %>
+        <%= submit_tag "Rechercher", class: "btn btn-outline-primary" %>
+      </form>
       <!-- Liens déplacés à droite -->
       <ul class="navbar-nav ms-auto">
         <% if user_signed_in? %>
           <li class="nav-item">
             <%= link_to "Dashboard", "/dashboards/index", class: "nav-link" %>
-          <li class="nav-item active">
           </li>
           <li class="nav-item">
             <%= link_to "Ajouter une œuvre", "/artworks/new", class: "nav-link" %>
