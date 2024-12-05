@@ -1,37 +1,50 @@
-<h1>Dashboard</h1>
+<div class="dashboard-container">
+    <!-- Sidebar -->
+    <aside class="sidebar">
+      <div class="logo">
+        <%= image_tag "logoArtbnb.jpg", class: "avatar" %>
+      </div>
+      <nav>
+        <ul>
+          <li><%= link_to 'Accueil', root_path %></li>
+          <li><%= link_to 'Mes Réservations', dashboards_path %></li>
+          <li><%= link_to 'Déconnexion', destroy_user_session_path, method: :delete %></li>
+        </ul>
+      </nav>
+    </aside>
 
-<h2>Mes réservations en cours</h2>
+    <!-- Main content -->
+    <main class="main-content">
+      <header class="header">
+        <h1>Bienvenue sur votre Dashboard Artbnb</h1>
+        <p>Consultez vos réservations en cours et gérez vos propriétés</p>
+      </header>
 
-<% if @current_bookings.any? %>
-  <table class="table">
-    <thead>
-      <tr>
-        <th>Artwork</th>
-        <th>Date de début</th>
-        <th>Date de fin</th>
-        <th>Status</th>
-        <th>Actions</th>
-      </tr>
-    </thead>
-    <tbody>
-      <% @current_bookings.each do |booking| %>
-        <tr>
-          <td><%= booking.artwork.title %></td>
-          <td><%= booking.start_date.strftime('%d/%m/%Y') %></td>
-          <td><%= booking.end_date.strftime('%d/%m/%Y') %></td>
-          <td><%= booking.status %></td>
-          <td>
-            <% if booking.status == 'Pending' %>
-              <%= button_to 'Accepter', accept_dashboard_path(booking), method: :patch, class: 'btn btn-success' %>
-              <%= button_to 'Refuser', decline_dashboard_path(booking), method: :patch, class: 'btn btn-danger' %>
-            <% else %>
-              <span class="badge badge-secondary">Statut: <%= booking.status %></span>
+      <section class="bookings">
+        <h2>Réservations en cours</h2>
+
+        <% if @current_bookings.any? %>
+          <div class="booking-cards">
+            <% @current_bookings.each do |booking| %>
+              <div class="card">
+                <div class="card-body">
+                  <h3><%= booking.artwork.title %></h3>
+                  <p>Date de début : <%= booking.start_date.strftime('%d/%m/%Y') %></p>
+                  <p>Date de fin : <%= booking.end_date.strftime('%d/%m/%Y') %></p>
+                  <p>Status : <%= booking.status %></p>
+                  <div class="actions">
+                    <% if booking.status == 'Pending' %>
+                      <%= button_to 'Accepter', accept_dashboard_path(booking), method: :patch, class: 'btn btn-success' %>
+                      <%= button_to 'Refuser', decline_dashboard_path(booking), method: :patch, class: 'btn btn-danger' %>
+                    <% end %>
+                  </div>
+                </div>
+              </div>
             <% end %>
-          </td>
-        </tr>
-      <% end %>
-    </tbody>
-  </table>
-<% else %>
-  <p>Vous n'avez aucune réservation en cours.</p>
-<% end %>
+          </div>
+        <% else %>
+          <p>Aucune réservation en cours.</p>
+        <% end %>
+      </section>
+    </main>
+  </div>
