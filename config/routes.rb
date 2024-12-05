@@ -26,11 +26,6 @@ Rails.application.routes.draw do
   end
 
   # Routes pour le dashboard
-  resources :dashboards, only: [:index] do
-    member do
-      patch :accept   # Méthode pour accepter la réservation
-      patch :decline  # Méthode pour refuser la réservation
-    end
-  end
-  
+  resources :dashboards, only: [:index] 
+
 end

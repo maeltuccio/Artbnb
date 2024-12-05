@@ -5,6 +5,7 @@ def create
   @booking = Booking.new(booking_params)
   @booking.user = current_user
   @booking.artwork = @artwork
+  @booking.status = "Pending"
 
   if @booking.save
     redirect_to dashboards_index_path, notice: "Booking bien enregistré."
