@@ -18,37 +18,17 @@
       <header class="header">
         <h1>Bienvenue sur votre Dashboard Artbnb</h1>
         <p>Consultez vos réservations en cours et gérez vos propriétés</p>
-<%= render "shared/usercardgrid" %>
+      <%= render "shared/usercardgrid" %>
       </header>
 
       <section class="bookings">
         <h2>Réservations en cours</h2>
 
-        <% if @current_bookings.any? %>
-          <div class="booking-cards">
-            <% @current_bookings.each do |booking| %>
-              <div class="card">
-                <div class="card-body">
-                <div>
+     <%= render "pendingbookings" %>
 
-                </div>
-                  <h3><%= booking.artwork.title %></h3>
-                  <p>Date de début : <%= booking.start_date.strftime('%d/%m/%Y') %></p>
-                  <p>Date de fin : <%= booking.end_date.strftime('%d/%m/%Y') %></p>
-                  <p>Status : <%= booking.status %></p>
-                  <div class="actions">
-                    <% if booking.status == 'Pending' %>
-                      <%= button_to 'Accepter', accept_booking_path(booking), data: { turbo_method: :patch }, class: 'btn btn-success' %>
-                      <%= button_to 'Refuser', decline_booking_path(booking), data: { turbo_method: :patch }, class: 'btn btn-danger' %>
-                    <% end %>
-                  </div>
-                </div>
-              </div>
-            <% end %>
-          </div>
-        <% else %>
-          <p>Aucune réservation en cours.</p>
-        <% end %>
+    <%= render "mybookings" %>
+
+
       </section>
     </main>
   </div>
