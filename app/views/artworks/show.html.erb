@@ -3,7 +3,7 @@
   <div class="gallery">
     <% if @artwork.image.attached? %>
       <div class="main-image">
-        <%= image_tag @artwork.image, class: "main-img", alt: "Image de #{@artwork.title}" %>
+        <%= cl_image_tag(@artwork.image.key, class: "main-img", alt: "Image de #{@artwork.title}") %>
       </div>
     <% else %>
       <div class="main-image">
