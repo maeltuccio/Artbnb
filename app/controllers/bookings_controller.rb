@@ -7,9 +7,11 @@ def create
   @booking.artwork = @artwork
 
   if @booking.save
-    redirect_to "dashboards/index", notice: "Booking bien enregistré."
+    redirect_to artworks_path, notice: "Booking bien enregistré."
   else
-    render 'artworks/show', alert: "Il y a un problème avec votre résa"
+    flash.now[:alert] = "Erreur, réessayez avec des dates valides"
+    render 'artworks/show'
+
   end
 end
 
