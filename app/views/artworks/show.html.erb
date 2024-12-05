@@ -29,17 +29,21 @@
     </div>
   <% end %>
   <!-- Informations supplémentaires -->
-  <div class="extra-info">
+  <div class="extra-info mb-3">
     <h3>Informations supplémentaires</h3>
     <p>Créé par : <%= @artwork.user.email %></p>
     <p>Date de création : <%= @artwork.created_at.strftime("%d %B %Y") %></p>
   </div>
   <!-- Lien pour retourner à la liste -->
-  <%= link_to 'Retour à la liste des œuvres', artworks_path, class: "btn btn-secondary" %>
+  <%= link_to 'Retour à la liste des œuvres', artworks_path, class: "btn btn-dark" %>
 </div>
-
+<div class="container">
+  <h3>Réservez en un clic 👇 </h3>
 <%= simple_form_for [@artwork, @booking] do |f| %>
-    <%= f.input :start_date, as: :string, input_html: { data: { controller: "datepicker" } } %>
-    <%= f.input :end_date, as: :string, input_html: { data: { controller: "datepicker" } } %>
-    <%= f.submit %>
+    <%= f.input :start_date, as: :string, label: "Début de la location", input_html: { data: { controller: "datepicker" } } %>
+    <%= f.input :end_date, as: :string, label:"Fin de la location", input_html: { data: { controller: "datepicker" } } %>
+ <button type="submit" class="btn btn-dark">
+    <i class="bi bi-calendar-check"></i> Confirmer ma réservation
+  </button>
   <% end %>
+</div>
