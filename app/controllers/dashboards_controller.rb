@@ -4,9 +4,9 @@ class DashboardsController < ApplicationController
   def index
     # Récupérer les réservations en cours de l'utilisateur
     @artworks = Artwork.where(user: current_user)
-    @current_bookings = current_user.bookings.where('start_date <= ? AND end_date >= ?', Time.now, Time.now)
+    @current_bookings = current_user.bookings #.where('start_date <= ? AND end_date >= ?', Time.now, Time.now)
   end
 
-  
+
 
 end

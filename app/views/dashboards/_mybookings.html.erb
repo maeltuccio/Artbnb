@@ -1,22 +1,28 @@
+
 <% if @current_bookings.any? %>
-          <div class="booking-cards">
-            <% @current_bookings.each do |booking| %>
-              <div class="card">
-                <div class="card-body">
-                  <h3><%= booking.artwork.title %></h3>
-                  <p>Date de début : <%= booking.start_date.strftime('%d/%m/%Y') %></p>
-                  <p>Date de fin : <%= booking.end_date.strftime('%d/%m/%Y') %></p>
-                  <p>Status : <%= booking.status %></p>
-                 
-                </div>
-              </div>
-            <% end %>
-          </div>
-        <% else %>
-          <p>Aucune réservation en cours.</p>
-        <% end %>
+  <div class="booking-cards">
+    <% @current_bookings.each do |booking| %>
+      <div class="card">
+        <% if booking.artwork.image.attached? %>
+            <div class="artwork-thumbnail">
+              <%= image_tag booking.artwork.image, alt: "Miniature de l'œuvre" %>
+            </div>
+          <% else %>
+            <p>Aucune image disponible</p>
+          <% end %>
+          <div class="card-body">
+          <h3><%= booking.artwork.title %></h3>
+
+          <!-- Vérifier si l'œuvre a une image attachée et l'afficher -->
 
 
-
-
-NEW
+          <p>Date de début : <%= booking.start_date.strftime('%d/%m/%Y') %></p>
+          <p>Date de fin : <%= booking.end_date.strftime('%d/%m/%Y') %></p>
+          <p>Status : <%= booking.status %></p>
+        </div>
+      </div>
+    <% end %>
+  </div>
+<% else %>
+  <p>Aucune réservation en cours.</p>
+<% end %>
