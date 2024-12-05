@@ -1,13 +1,18 @@
 <div class="banner">
+  <div class="banner-image">
+    <%= cl_image_tag(@banner_image, width: 1920, height: 600, crop: :fill, gravity: :center, alt: "bannière", class: "banner-background")%>
+  </div>
   <div class="banner-content">
     <h1 class="banner-title">Découvrez des œuvres uniques</h1>
     <p class="banner-subtitle">Explorez, admirez, et réservez les plus belles œuvres d'art.</p>
     <%= link_to 'Voir toutes les œuvres', artworks_path, class: 'btn btn-primary' %>
   </div>
 </div>
-<h1>Liste des œuvres d'art</h1>
+<h1 class="artworks-title">Liste des œuvres d'art</h1>
 <% if user_signed_in? %>
+  <div class="button-container">
   <%= link_to 'Nouvelle œuvre', new_artwork_path, class: "btn btn-primary" %>
+  </div>
 <% end %>
 <!-- Grille des œuvres -->
 <%= render "shared/usercardgrid" %>
