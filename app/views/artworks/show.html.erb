@@ -1,15 +1,42 @@
-<h1><%= @artwork.title %></h1>
-<p><%= @artwork.description %></p>
-<p>Prix : <%= number_to_currency(@artwork.price) %></p>
-<% if @artwork.image.attached? %>
-  <%= image_tag @artwork.image, class: "img-fluid" %>
-<% end %>
-<% if user_signed_in? && @artwork.user == current_user %>
-  <%= link_to 'Modifier', edit_artwork_path(@artwork), class: "btn btn-warning" %>
-  <%= link_to 'Supprimer', artwork_path(@artwork), method: :delete, data: { confirm: 'Êtes-vous sûr ?' }, class: "btn btn-danger" %>
-<% end %>
-
-<h2>Réservez cette oeuvre</h2>
+<div class="container">
+  <!-- Galerie d'images -->
+  <div class="gallery">
+    <% if @artwork.image.attached? %>
+      <div class="main-image">
+        <%= image_tag @artwork.image, class: "main-img", alt: "Image de #{@artwork.title}" %>
+      </div>
+    <% else %>
+      <div class="main-image">
+        <div class="image-placeholder">Aucune image disponible</div>
+      </div>
+    <% end %>
+  </div>
+  <!-- Détails de l'œuvre -->
+  <div class="details">
+    <h1 class="artwork-title"><%= @artwork.title %></h1>
+    <p class="artwork-description"><%= @artwork.description %></p>
+    <p class="artwork-price">Prix : <%= number_to_currency(@artwork.price) %></p>
+  </div>
+  <!-- Section de réservation ou actions -->
+  <% if user_signed_in? && @artwork.user == current_user %>
+    <div class="actions">
+      <%= link_to 'Modifier', edit_artwork_path(@artwork), class: "btn btn-primary" %>
+      <%= link_to 'Supprimer', artwork_path(@artwork), method: :delete, data: { confirm: 'Êtes-vous sûr ?' }, class: "btn btn-danger" %>
+    </div>
+  <% else %>
+    <div class="actions">
+      <p>Contactez le propriétaire pour plus d'informations.</p>
+    </div>
+  <% end %>
+  <!-- Informations supplémentaires -->
+  <div class="extra-info">
+    <h3>Informations supplémentaires</h3>
+    <p>Créé par : <%= @artwork.user.email %></p>
+    <p>Date de création : <%= @artwork.created_at.strftime("%d %B %Y") %></p>
+  </div>
+  <!-- Lien pour retourner à la liste -->
+  <%= link_to 'Retour à la liste des œuvres', artworks_path, class: "btn btn-secondary" %>
+</div>
 
 <%= simple_form_for [@artwork, @booking] do |f| %>
     <%= f.input :start_date, as: :string, input_html: { data: { controller: "datepicker" } } %>
