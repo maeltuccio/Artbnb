@@ -11,7 +11,12 @@ Rails.application.routes.draw do
 
   # Routes pour les artworks
   resources :artworks do
-    resources :bookings, only: [:create]
+    resources :bookings, only: [:create, :update] do
+      member do
+        patch :accept
+        patch :decline
+      end
+    end
   end
 
   # Route pour le tableau de bord
@@ -26,6 +31,9 @@ Rails.application.routes.draw do
   end
 
   # Routes pour le dashboard
-  resources :dashboards, only: [:index] 
+  resources :dashboards, only: [:index]
+
+
+
 
 end

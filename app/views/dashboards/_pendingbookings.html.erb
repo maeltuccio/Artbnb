@@ -11,8 +11,10 @@
                   <p>Status : <%= booking.status %></p>
                   <div class="actions">
                     <% if booking.status == 'Pending' %>
-                      <%= link_to 'Accepter', accept_booking_path(booking), data: { turbo_method: :patch } %>
-                      <%= link_to 'Refuser', decline_booking_path(booking), data: { turbo_method: :patch } %>
+                      <%= link_to 'Accepter', accept_booking_path(artwork_id: booking.artwork_id, id: booking.id), data: { turbo_method: :patch } %>
+                      <%= link_to 'Refuser', decline_booking_path(artwork_id: booking.artwork_id, id: booking.id), data: { turbo_method: :patch } %>
+
+
                     <% end %>
                   </div>
 
