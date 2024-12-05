@@ -3,7 +3,11 @@ class ArtworksController < ApplicationController
   skip_before_action :authenticate_user!, only: [:index, :show]
 
   def index
-    @artworks = Artwork.all
+    if params[:query].present?
+      @artworks = Artwork.where("title ILIKE :query OR description ILIKE :query", query: "%#{params[:query]}%")
+    else
+      @artworks = Artwork.all
+    end
   end
 
   def new
@@ -50,4 +54,3 @@ class ArtworksController < ApplicationController
     params.require(:artwork).permit(:title, :description, :price, :image)
   end
 end
-
