@@ -8,9 +8,9 @@
 /* Sidebar */
 .sidebar {
   flex: 0 0 250px; /* Largeur fixe de la sidebar */
-  height: 100vh; /* Pleine hauteur */
-  position: fixed; /* Sidebar toujours visible */
+   /* Pleine hauteur */
   top: 0;
+  align-self: stretch;
   left: 0;
   background: linear-gradient(145deg, #ff385c, #d23760); /* Dégradé pour la sidebar */
   color: white;
@@ -20,15 +20,25 @@
   padding: 2rem 1rem;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
   z-index: 1000;
-  /* Logo et avatar */
+  border-radius: 8px;
+  position: relative;
+  margin: 104px 24px 24px ;  /* Logo et avatar */
   .logo {
-    margin-bottom: 2rem;
+    position: absolute; /* Permet de positionner l'avatar au-dessus du fond */
+    top: -80px; /* Positionne l'avatar au-dessus du fond */
+    left: 50%;
+    transform: translateX(-50%); /* Centre l'avatar horizontalement */
+    z-index: 10; /* Assure que l'avatar est au-dessus des autres éléments */
+    margin: 40px 8px 8px 8px;
     .avatar {
       width: 80px;
       height: 80px;
       border-radius: 50%;
-      object-fit: cover;
-      border: 3px solid white;
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Ombre */
+     /* Gère la coupe de l'image */
+      // object-fit: cover;
+      // border: 3px solid white;
+
       transition: transform 0.3s ease, box-shadow 0.3s ease;
       &:hover {
         transform: scale(1.1);
@@ -38,6 +48,7 @@
   }
   /* Informations utilisateur */
   .user-info {
+    margin-top: 40px;
     text-align: center;
     margin-bottom: 2rem;
     p {
@@ -102,10 +113,8 @@
 /* Contenu principal */
 .main-content {
   flex: 1; /* Prend l'espace restant */
-  margin-left: 71px;
   margin-right: 71px;/* Correspond à la largeur exacte de la sidebar */
   padding: 24px; /* Ajoute un espacement autour du contenu */
-  background-color: #f8f9fa; /* Arrière-plan léger */
   min-height: 100vh; /* S'assure que le contenu s'étend sur toute la hauteur */
   box-sizing: border-box; /* Inclut les paddings dans les dimensions */
 }
