@@ -42,6 +42,7 @@ class ArtworksController < ApplicationController
   end
 
   def destroy
+    raise
     @artwork.destroy
     redirect_to artworks_path, notice: 'Artwork was successfully destroyed.'
   end
