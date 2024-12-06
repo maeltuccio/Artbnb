@@ -21,7 +21,7 @@
   <% if user_signed_in? && @artwork.user == current_user %>
     <div class="actions">
       <%= link_to 'Modifier', edit_artwork_path(@artwork), class: "btn btn-primary" %>
-      <%= link_to 'Supprimer', artwork_path(@artwork), method: :delete, data: { confirm: 'Êtes-vous sûr ?' }, class: "btn btn-danger" %>
+      <%= link_to 'Supprimer', delete_artwork_path(@artwork), data: { turbo_method: :delete, turbo_confirm: 'Êtes-vous sûr?' } %>
     </div>
   <% else %>
     <div class="actions">

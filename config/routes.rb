@@ -10,7 +10,7 @@ Rails.application.routes.draw do
   root to: 'artworks#index'
 
   # Routes pour les artworks
-  resources :artworks do
+  resources :artworks, except: :destroy do
     resources :bookings, only: [:create, :update] do
       member do
         patch :accept
@@ -18,6 +18,8 @@ Rails.application.routes.draw do
       end
     end
   end
+
+  delete 'artworks/:id', to: 'artworks#destroy', as: :delete_artwork
 
   # Route pour le tableau de bord
   get '/dashboards', to: 'dashboards#show', as: :dashboard
@@ -32,7 +34,6 @@ Rails.application.routes.draw do
 
   # Routes pour le dashboard
   resources :dashboards, only: [:index]
-
 
 
 
