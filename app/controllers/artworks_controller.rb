@@ -6,6 +6,7 @@ class ArtworksController < ApplicationController
     @banner_image = "https://res.cloudinary.com/dcztp85ae/image/upload/v1733417582/development/j99p161gzy7sbi8ycqnq4ix1aj5j.jpg"
     if params[:query].present?
       @artworks = Artwork.where("title ILIKE :query OR description ILIKE :query", query: "%#{params[:query]}%")
+      @search = true
     else
       @artworks = Artwork.all
     end

@@ -1,5 +1,7 @@
+<!-- Bannière (initialement visible) -->
+<% unless @search == true %>
 <div class="banner">
-  <div class="banner-image">
+    <div class="banner-image">
     <%= image_tag(@banner_image, width: 1920, height: 600, crop: :fill, gravity: :center, alt: "bannière", class: "banner-background")%>
   </div>
   <div class="banner-content">
@@ -8,6 +10,11 @@
     <%= link_to 'Voir toutes les œuvres', artworks_path, class: 'btn btn-primary' %>
   </div>
 </div>
+<% end %>
+
+
+
+
 <blockquote id="quote">
   <p>" Mon projet préféré? C’est le prochain."</p>
   <footer>- FRANK LLOYD WRIGHT</footer>
