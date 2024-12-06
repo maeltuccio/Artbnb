@@ -10,7 +10,8 @@
       <nav>
         <ul>
           <li><%= link_to 'Accueil', root_path %></li>
-          <li><%= link_to 'Mes Réservations', dashboards_path %></li>
+          <li><%= link_to 'Mes Réservations en Attente', "#pending-bookings" %></li>
+          <li><%= link_to 'Mes Réservations', "#my-bookings" %></li>
           <li><%= link_to 'Déconnexion', destroy_user_session_path, data: { turbo_method: :delete } %></li>
         </ul>
       </nav>
@@ -24,13 +25,13 @@
         <p>Consultez vos réservations en cours et gérez vos propriétés</p>
       <%= render "shared/usercardgrid" %>
       </header>
-        <h2>Réservations en attente de confirmation</h2>
+        <h2 id="pending-bookings" > Réservations en attente de confirmation</h2>
 
       <section class="header row mb-3">
 
         <%= render "pendingbookings" %>
       </section>
-        <h2>Mes reservations</h2>
+        <h2 id="my-bookings">Mes reservations</h2>
 
             <section class="header row mb-3">
 
