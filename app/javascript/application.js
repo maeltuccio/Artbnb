@@ -5,5 +5,3 @@ import "@popperjs/core"
 import "bootstrap"
 import flatpickr from "flatpickr";
 //import "flatpickr/dist/flatpickr.min.css";
-
-import "rails-ujs"; // pour gérer les actions comme DELETE
