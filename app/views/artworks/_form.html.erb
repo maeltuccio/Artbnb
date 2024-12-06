@@ -1,5 +1,6 @@
 <div class="container">
   <%= form_with model: @artwork, local: true do |form| %>
+  <h1 class="artworks-title pt-2">Publiez vôtre œuvre</h1>
     <!-- Titre de l'œuvre -->
     <div class="form-group">
       <%= form.label :title, "Titre de l'œuvre", class: "form-label" %>
@@ -42,7 +43,7 @@
     </div>
     <!-- Bouton de soumission -->
     <div class="form-group">
-      <%= form.submit "Enregistrer", class: "btn" %>
+      <%= form.submit "Publier", class: "btn btn-dark mt-2" %>
     </div>
   <% end %>
 </div>

@@ -194,6 +194,7 @@
     margin-bottom: 1rem;
   }
 }
+
 /* Boutons et actions sur la page show */
 .actions {
   display: flex;
@@ -248,18 +249,20 @@
   }
 }
 .artworks-title {
-  font-size: 3rem; /* Taille de la police */
-  font-weight: bold; /* Poids de la police */
+  font-family: 'Work Sans', sans-serif;
+  font-size: 32px;
+  font-weight: bold;
   text-align: center; /* Centrer le texte */
   margin-bottom: 2rem; /* Espacement sous le H1 */
   color: #333; /* Couleur du texte */
   text-transform: uppercase; /* Mettre le texte en majuscules */
   letter-spacing: 2px; /* Espacement entre les lettres */
-  background: linear-gradient(90deg, #ff385c, #ff8c42); /* Dégradé de couleur */
+  background: #FF385C; /* Dégradé de couleur */
   background-clip: text; /* Utilisation du dégradé comme couleur du texte */
   -webkit-background-clip: text; /* Utilisation du dégradé comme couleur du texte */
   -webkit-text-fill-color: transparent; /* Rend le texte transparent pour afficher le dégradé */
 }
+
 /* Conteneur pour centrer le bouton */
 .button-container {
   display: flex;

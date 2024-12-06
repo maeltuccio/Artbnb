@@ -24,12 +24,33 @@
 }
 
 .form-control {
-  width: 100%;
-  padding: 10px;
-  font-size: 1rem;
-  border: 1px solid #ccc;
-  border-radius: 4px;
+  width: 100%; /* Prend toute la largeur du conteneur */
+  padding: 10px; /* Espacement interne */
+  font-size: 1rem; /* Taille du texte */
+  color: #333; /* Couleur du texte */
+  border: 1px solid #ccc; /* Bordure sobre par défaut */
+  border-radius: 4px; /* Coins arrondis */
+  background-color: #f9f9f9; /* Fond légèrement gris */
+  transition: box-shadow 0.2s ease, border-color 0.2s ease, transform 0.2s ease; /* Transitions douces */
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1); /* Légère ombre interne */
 }
+
+.form-control:hover {
+  border-color: #e67b8f; /* Bordure rose au survol */
+   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1), 0 1px 2px rgba(0, 0, 0, 0.05); /* Effet d'ombre plus marqué */
+  transform: translateY(-2px); /* Légère élévation pour l'effet flottant */
+}
+
+.form-control:focus {
+  border-color: #ec788d; /* Bordure rose au focus */
+  outline: none; /* Supprime le contour par défaut */
+  background-color: #fff; /* Fond blanc pour un look propre */
+ // box-shadow: 0 0 10px rgba(255, 56, 92, 0.4); /* Effet lumineux subtil */
+  transform: translateY(-2px); /* Maintient l'effet flottant */
+}
+
+
+
 
 .form-actions {
   text-align: right;
