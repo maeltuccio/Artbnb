@@ -26,17 +26,22 @@
     position: relative; /* Position relative pour superposer au-dessus de l'image */
     z-index: 2; /* Priorité au contenu par rapport à l'image */
     max-width: 800px;
-    background: rgba(0, 0, 0, 0.5); /* Fond semi-transparent */
+    background: rgba(0, 0, 0, 0.35); /* Fond semi-transparent */
     padding: 2rem;
     border-radius: 8px;
     .banner-title {
       font-size: 2.5rem;
       font-weight: bold;
       margin-bottom: 1rem;
+      text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7); /* Ombre portée pour améliorer la lisibilité */
     }
+
+
     .banner-subtitle {
       font-size: 1.2rem;
       margin-bottom: 1.5rem;
+      text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7); /* Ombre portée pour améliorer la lisibilité */
+
     }
     .btn {
       display: inline-block;
@@ -58,11 +63,18 @@
 .grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 1.5rem;
+  gap: 1rem;
   margin-top: 2rem;
+  margin-inline-start: 1rem;
+  margin-inline-end: 1rem;
+}
+
+.grid a {
+  text-decoration: none !important;
 }
 /* Style des cartes */
 .card {
+  height: 500px;
   display: flex;
   flex-direction: column; /* Permet d'empiler les éléments verticalement */
   background: white;
@@ -70,10 +82,17 @@
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
   overflow: hidden;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
+
   &:hover {
     transform: translateY(-5px);
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
   }
+
+  .card-link {
+    text-decoration: none !important;
+
+  }
+
   .card-image {
     width: 100%;
     height: 200px;
@@ -110,9 +129,15 @@
     .card-price {
       font-size: 1rem;
       font-weight: bold;
+      position: absolute;
+      bottom: 10px;
+      right: 10px;
       color: #ff385c;
       margin-bottom: 1rem;
+      padding-right: 5px;
     }
+
+
     .card-actions {
       margin-top: auto; /* Force le bouton à rester en bas */
       .btn {
@@ -283,4 +308,23 @@
   &:hover {
     background-color: darken(#ff385c, 10%);
   }
+}
+
+#quote {
+font-family: 'Times New Roman', Times, serif;
+text-align: center;
+font-size: 2rem;
+color: #333;
+margin-bottom: 1rem;
+font-weight: bold;
+font-style: italic;
+
+  footer {
+    color: #333;
+    padding: 1rem;
+    text-align: center;
+    font-size: 1rem;
+    font-style: normal;
+  }
+
 }

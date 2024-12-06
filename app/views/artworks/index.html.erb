@@ -8,11 +8,10 @@
     <%= link_to 'Voir toutes les œuvres', artworks_path, class: 'btn btn-primary' %>
   </div>
 </div>
-<h1 class="artworks-title">Liste des œuvres d'art</h1>
-<% if user_signed_in? %>
-  <div class="button-container">
-  <%= link_to 'Nouvelle œuvre', new_artwork_path, class: "btn btn-primary" %>
-  </div>
-<% end %>
+<blockquote id="quote">
+  <p>" Mon projet préféré? C’est le prochain."</p>
+  <footer>- FRANK LLOYD WRIGHT</footer>
+</blockquote>
+
 <!-- Grille des œuvres -->
 <%= render "shared/usercardgrid" %>
