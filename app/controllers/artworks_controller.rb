@@ -3,7 +3,7 @@ class ArtworksController < ApplicationController
   skip_before_action :authenticate_user!, only: [:index, :show]
 
   def index
-    @banner_image = "https://res.cloudinary.com/djqnyh6hr/image/upload/v1733407750/utxgxwtkuqe0zct4e8sz7k3xpmnm_idaxcp.jpg"
+    @banner_image = "https://res.cloudinary.com/dcztp85ae/image/upload/v1733417582/development/j99p161gzy7sbi8ycqnq4ix1aj5j.jpg"
     if params[:query].present?
       @artworks = Artwork.where("title ILIKE :query OR description ILIKE :query", query: "%#{params[:query]}%")
     else
