@@ -1,102 +1,138 @@
 /* Dashboard layout */
 .dashboard-container {
-  display: flex;
-  min-height: 100vh;
+  display: flex; /* Affiche la sidebar et le contenu principal côte à côte */
+  min-height: 100vh; /* Assure que le conteneur prend toute la hauteur */
+  width: 100%; /* Occupe toute la largeur */
+  margin: 0; /* Supprime les marges globales */
 }
-
 /* Sidebar */
 .sidebar {
-  width: 250px;
-  background: radial-gradient(100% 12158.24% at 99.42% 0%, #C72D65 0%, #D23760 48.44%, #D23755 100%) /* warning: gradient uses a rotation that is not supported by CSS and may not behave as expected */,
-  radial-gradient(100% 12158.24% at 99.42% 0%, #C72D65 0%, #D23760 48.44%, #D23755 100%) /* warning: gradient uses a rotation that is not supported by CSS and may not behave as expected */;
-  ;
-  color: #fff;
-  padding-top: 80px;
+  flex: 0 0 250px; /* Largeur fixe de la sidebar */
+  height: 100vh; /* Pleine hauteur */
+  position: fixed; /* Sidebar toujours visible */
+  top: 0;
+  left: 0;
+  background: linear-gradient(145deg, #ff385c, #d23760); /* Dégradé pour la sidebar */
+  color: white;
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin: 96px 24px 24px 24px;
-  border-radius: 8px;
-  position: relative; /* Nécessaire pour le positionnement absolu de l'avatar */
+  padding: 2rem 1rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+  /* Logo et avatar */
+  .logo {
+    margin-bottom: 2rem;
+    .avatar {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 3px solid white;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      &:hover {
+        transform: scale(1.1);
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+      }
+    }
+  }
+  /* Informations utilisateur */
+  .user-info {
+    text-align: center;
+    margin-bottom: 2rem;
+    p {
+      font-size: 1.1rem;
+      font-weight: bold;
+      margin: 0;
+      color: white;
+    }
+  }
+  /* Navigation */
+  nav ul {
+    list-style: none;
+    padding: 0;
+    width: 100%;
+    li {
+      margin: 1rem 0;
+      a {
+        display: flex;
+        align-items: center;
+        color: white;
+        font-size: 1rem;
+        font-weight: bold;
+        text-decoration: none;
+        padding: 0.8rem 1rem;
+        border-radius: 8px;
+        /* Icônes modernes */
+        i {
+          margin-right: 1rem;
+          font-size: 1.2rem;
+        }
+        &:hover {
+          background: rgba(255, 255, 255, 0.2);
+        }
+      }
+    }
+  }
+  /* Effet de gradient flottant en arrière-plan */
+  &::before {
+    content: "";
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 300%;
+    height: 300%;
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.2), transparent 70%);
+    animation: float-bg 6s infinite linear;
+    z-index: 0;
+    opacity: 0.5;
+  }
+  @keyframes float-bg {
+    0% {
+      transform: translate(0, 0) rotate(0deg);
+    }
+    100% {
+      transform: translate(10%, 10%) rotate(360deg);
+    }
+  }
+  /* Position relative pour tout le contenu de la sidebar */
+  position: relative;
+  z-index: 1;
 }
-
-
-
-/* Pour l'avatar */
-.sidebar .logo {
-  position: absolute; /* Permet de positionner l'avatar au-dessus du fond */
-  top: -40px; /* Positionne l'avatar au-dessus du fond */
-  left: 50%;
-  transform: translateX(-50%); /* Centre l'avatar horizontalement */
-  z-index: 10; /* Assure que l'avatar est au-dessus des autres éléments */
-  margin-bottom: 40px; /* Décalage sous l'avatar */
-}
-
-.sidebar .logo .avatar {
-  width: 80px;
-  height: 80px;
-  border-radius: 50%;
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Ombre */
-  object-fit: cover; /* Gère la coupe de l'image */
-}
-
-.sidebar nav ul {
-  list-style: none;
-  padding-left: 0;
-}
-
-.sidebar nav ul li {
-  margin: 20px 0;
-}
-
-
-.sidebar nav ul li a {
-  color: #333;
-  font-weight: bold;
-  text-decoration: none;
-  text-decoration: none;
-  font-size: 18px;
-  padding: 10px;
-  display: block;
-  text-align: center;
-}
-
-.sidebar nav ul li a:hover {
- color: white;
-}
-
-/* Main content */
+/* Contenu principal */
 .main-content {
-  margin: 24px;
-  flex: 1;
+  flex: 1; /* Prend l'espace restant */
+  margin-left: 250px; /* Correspond à la largeur exacte de la sidebar */
+  padding: 24px; /* Ajoute un espacement autour du contenu */
+  background-color: #f8f9fa; /* Arrière-plan léger */
+  min-height: 100vh; /* S'assure que le contenu s'étend sur toute la hauteur */
+  box-sizing: border-box; /* Inclut les paddings dans les dimensions */
 }
-.header{
-border-radius: 8px;
-margin: 24px;
-flex: 1;
-padding: 30px;
-background-color: #fff;
-box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-}
-
-.header h1, h2 {
-  padding: 20px 0;
-  font-size: 2rem;
-  color: #333;
-}
-
-.header p {
-  font-size: 1.2rem;
-  color: #666;
-}
-
-section {
+/* Header */
+.header {
   border-radius: 8px;
-  margin: 24px;
-  flex: 1;
+  margin-bottom: 24px;
   padding: 30px;
   background-color: #fff;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);}
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  h1, h2 {
+    padding: 20px 0;
+    font-size: 2rem;
+    color: #333;
+  }
+  p {
+    font-size: 1.2rem;
+    color: #666;
+  }
+}
+/* Sections */
+section {
+  border-radius: 8px;
+  margin-bottom: 24px;
+  padding: 30px;
+  background-color: #fff;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
 /* Booking cards */
 .booking-cards {
   display: grid;
@@ -104,41 +140,34 @@ section {
   gap: 20px;
   margin-top: 30px;
 }
-
 .card {
   background-color: #fff;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   border-radius: 10px;
   overflow: hidden; /* Cache tout ce qui dépasse du cadre arrondi */
 }
-
 .card img {
-  width: 100%;  /* L'image occupe toute la largeur de la carte */
-  height: 200px; /* Définir une hauteur fixe pour l'image, ajustez selon vos besoins */
-  object-fit: cover;  /* L'image couvrira toute la zone sans être déformée */
-  display: block; /* Assure que l'image prend toute la largeur du conteneur */
+  width: 100%; /* L'image occupe toute la largeur de la carte */
+  height: 200px; /* Définir une hauteur fixe pour l'image */
+  object-fit: cover; /* L'image couvrira toute la zone sans être déformée */
+  display: block;
   border-radius: 10px 10px 0 0; /* Bord arrondi en haut seulement */
 }
-
 .card-body {
   padding: 20px;
 }
-
 .card h3 {
   font-size: 1.5rem;
   color: #333;
 }
-
 .card p {
   font-size: 1rem;
   color: #666;
   margin-bottom: 10px;
 }
-
 .actions {
   margin-top: 20px;
 }
-
 .btn {
   padding: 10px 20px;
   border: none;
@@ -146,17 +175,23 @@ section {
   cursor: pointer;
   font-size: 1rem;
 }
-
 .btn-success {
   background-color: #28a745;
   color: white;
 }
-
 .btn-danger {
   background-color: #dc3545;
   color: white;
 }
-
 .btn:hover {
   opacity: 0.8;
+}
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .sidebar {
+    flex: 0 0 200px; /* Réduit la largeur de la sidebar */
+  }
+  .main-content {
+    margin-left: 200px; /* Correspond à la largeur réduite de la sidebar */
+  }
 }
