@@ -102,7 +102,8 @@
 /* Contenu principal */
 .main-content {
   flex: 1; /* Prend l'espace restant */
-  margin-left: 250px; /* Correspond à la largeur exacte de la sidebar */
+  margin-left: 71px;
+  margin-right: 71px;/* Correspond à la largeur exacte de la sidebar */
   padding: 24px; /* Ajoute un espacement autour du contenu */
   background-color: #f8f9fa; /* Arrière-plan léger */
   min-height: 100vh; /* S'assure que le contenu s'étend sur toute la hauteur */
